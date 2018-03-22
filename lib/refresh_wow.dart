@@ -1,6 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
-import 'package:refresh_wow/LoadMoreWidget.dart';
+import 'package:refresh_wow/load_more_widget.dart';
 
 enum ItemType {
   header,
