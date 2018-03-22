@@ -7,6 +7,7 @@ A new flutter package project.
 For help getting started with Flutter, view our online [documentation](https://flutter.io/).
 
 For help on editing package code, view the [documentation](https://flutter.io/developing-packages/).
+![image](https://github.com/zhangruiyu/refresh_wow/blob/master/wow.gif)
 #属性
 
 * itemData: 数据集合 []
