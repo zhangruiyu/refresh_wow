@@ -8,8 +8,8 @@ For help getting started with Flutter, view our online [documentation](https://f
 
 For help on editing package code, view the [documentation](https://flutter.io/developing-packages/).
 ![image](https://github.com/zhangruiyu/refresh_wow/blob/master/wow.gif)
-#属性
 
+#属性
 * itemData: 数据集合 []
 * footerItemCount:  底部控件的个数 2
 * headerItemCount: 头部控件个数2,
