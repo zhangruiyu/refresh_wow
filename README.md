@@ -18,3 +18,10 @@ For help on editing package code, view the [documentation](https://flutter.io/de
 * footerBuilder: (BuildContext context, int index) 构建底部控件
 * onRefresh: _handleRefresh, 刷新
 * onLoadMore: !hasMore ? _handleLoadMore : null,) 加载更多,为null时候标示没有更多数据
+
+####refresh_config()里的
+* var refreshingShowText = '正在刷新数据';
+* var errShowText = '数据刷新失败\n点击重试';
+* var doneShowText = '⁽⁽ଘ( ˊᵕˋ )ଓ⁾⁾';
+* var loadMoreTextStyle = new TextStyle();
+可以refresh_config().errShowText='自定义错误'修改

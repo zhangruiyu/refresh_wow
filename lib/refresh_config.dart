@@ -10,7 +10,6 @@ class RefreshConfig {
 
   RefreshConfig._internal();
 
-  var pageSize = 10;
   var refreshingShowText = '正在刷新数据';
   var errShowText = '数据刷新失败\n点击重试';
   var doneShowText = '⁽⁽ଘ( ˊᵕˋ )ଓ⁾⁾';
