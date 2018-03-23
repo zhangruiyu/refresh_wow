@@ -27,9 +27,7 @@ class LoadMoreWidgetState extends State<LoadMoreWidget> {
   void initState() {
     super.initState();
     if (widget.onLoadMore == null) {
-      setState(() {
-        currentState = _RefreshIndicatorState.done;
-      });
+      currentState = _RefreshIndicatorState.done;
     } else {
       final Future<Null> refreshResult = widget.onLoadMore();
       assert(() {
