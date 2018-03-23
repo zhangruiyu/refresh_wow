@@ -1,6 +1,7 @@
 # refresh_wow
 
-A new flutter package project.
+#####自持自定义头,尾.
+#####加载更多.
 
 ## Getting Started
 
@@ -24,4 +25,6 @@ For help on editing package code, view the [documentation](https://flutter.io/de
 * var errShowText = '数据刷新失败\n点击重试';
 * var doneShowText = '⁽⁽ଘ( ˊᵕˋ )ଓ⁾⁾';
 * var loadMoreTextStyle = new TextStyle();
-可以refresh_config().errShowText='自定义错误'修改
+####可以refresh_config().errShowText='自定义错误'修改
+
+##### 有需求的话,后期再加入其他的吧
