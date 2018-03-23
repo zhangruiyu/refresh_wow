@@ -26,31 +26,36 @@ class LoadMoreWidgetState extends State<LoadMoreWidget> {
   @override
   void initState() {
     super.initState();
-    assert(widget.onLoadMore != null);
-    final Future<Null> refreshResult = widget.onLoadMore();
-    assert(() {
-      if (refreshResult == null)
-        FlutterError.reportError(new FlutterErrorDetails(
-          exception: new FlutterError(
-              'The onRefresh callback returned null.\n'
-                  'The RefreshIndicator onRefresh callback must return a Future.'
-          ),
-          context: 'when calling onLoadMore',
-          library: 'refresh_wow library',
-        ));
-      return true;
-    }());
-    refreshResult.catchError((f) {
+    if (widget.onLoadMore == null) {
       setState(() {
-        currentState = _RefreshIndicatorState.error;
+        currentState = _RefreshIndicatorState.done;
       });
-    }).then((onValue) {
-      if (mounted && currentState == _RefreshIndicatorState.refresh) {
+    } else {
+      final Future<Null> refreshResult = widget.onLoadMore();
+      assert(() {
+        if (refreshResult == null)
+          FlutterError.reportError(new FlutterErrorDetails(
+            exception: new FlutterError(
+                'The onRefresh callback returned null.\n'
+                    'The RefreshIndicator onRefresh callback must return a Future.'
+            ),
+            context: 'when calling onLoadMore',
+            library: 'refresh_wow library',
+          ));
+        return true;
+      }());
+      refreshResult.catchError((f) {
         setState(() {
-          currentState = _RefreshIndicatorState.done;
+          currentState = _RefreshIndicatorState.error;
         });
-      }
-    });
+      }).then((onValue) {
+        if (mounted && currentState == _RefreshIndicatorState.refresh) {
+          setState(() {
+            currentState = _RefreshIndicatorState.done;
+          });
+        }
+      });
+    }
   }
 
   @override

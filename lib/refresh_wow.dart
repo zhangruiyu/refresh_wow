@@ -55,8 +55,7 @@ class RefreshListView<T> extends StatelessWidget {
       key: this.refreshIndicatorKey,
       onRefresh: this.onRefresh,
       child: new ListView.builder(
-        itemCount: itemData.length + headerItemCount + footerItemCount +
-            (this.onLoadMore == null ? 0 : _loadMoreCount),
+        itemCount: itemData.length + headerItemCount + footerItemCount + _loadMoreCount,
         itemBuilder: (BuildContext context, int index) {
 //            print(getTypeByIndex(index).index);
           var itemType = getTypeByIndex(index);
