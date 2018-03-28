@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="WEB_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/path_provider-0.3.1/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/path_provider-0.3.1/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/path_provider-0.3.1/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/path_provider-0.3.1/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/path_provider-0.3.1/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/path_provider-0.3.1/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/shared_preferences-0.3.3/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/shared_preferences-0.3.3/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/shared_preferences-0.3.3/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/shared_preferences-0.3.3/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/shared_preferences-0.3.3/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/shared_preferences-0.3.3/example/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/sqflite-0.8.4/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/sqflite-0.8.4/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/sqflite-0.8.4/build" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/sqflite-0.8.4/example/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/sqflite-0.8.4/example/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/ios/Pods/.symlinks/plugins/sqflite-0.8.4/example/build" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Dart SDK" level="project" />
+    <orderEntry type="library" name="Dart Packages" level="project" />
+    <orderEntry type="library" name="Flutter Plugins" level="project" />
+  </component>
+</module>
