@@ -9,8 +9,8 @@ enum ItemType {
   more
 }
 
-typedef Widget IndexedWithDataWidgetBuilder<T>(BuildContext context, int index,
-    T itemData);
+typedef Widget IndexedWithDataWidgetBuilder<D>(BuildContext context, int index,
+    D itemData);
 
 class RefreshListView<T> extends StatefulWidget {
   final List<T> itemData;

@@ -100,7 +100,6 @@ class _MyHomePageState extends State<MyHomePage> {
     return completer.future;
   }
 
-
   @override
   Widget build(BuildContext context) {
     // This method is rerun every time setState is called, for instance as done
@@ -119,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
           itemData: this.list,
           footerItemCount: 2,
           headerItemCount: 2,
-          itemBuilder: (BuildContext context, int index, String itemData) {
+          itemBuilder: (BuildContext context, int index, dynamic itemData) {
             return new Text('itemData: $itemData index: $index');
           },
           headerBuilder: (BuildContext context, int index) {
