@@ -12,7 +12,7 @@ enum ItemType {
 typedef Widget IndexedWithDataWidgetBuilder<T>(BuildContext context, int index,
     T itemData);
 
-class RefreshListView<T> extends StatelessWidget {
+class RefreshListView<T> extends StatefulWidget {
   final List<T> itemData;
   final int headerItemCount;
   final int footerItemCount;
@@ -35,8 +35,15 @@ class RefreshListView<T> extends StatelessWidget {
   final double itemExtent;
   final Key listViewKey;
   final Key refreshIndicatorKey;
+  final Key refreshListViewKey;
+
+  @override
+  State createState() {
+    return new RefreshListViewState<T>();
+  }
 
   RefreshListView({
+    this.refreshListViewKey,
     this.listViewKey,
     this.refreshIndicatorKey,
     //
@@ -47,53 +54,72 @@ class RefreshListView<T> extends StatelessWidget {
     this.primary, this.physics, this.shrinkWrap, this.padding,
     //
     @required this.onRefresh, @required this.itemData, @required this.itemBuilder, this.headerItemCount = 0,
-    this.headerBuilder, this.footerItemCount = 0, this.footerBuilder, this.onLoadMore});
+    this.headerBuilder, this.footerItemCount = 0, this.footerBuilder, this.onLoadMore})
+      :super(key: refreshListViewKey);
 
+
+}
+
+class RefreshListViewState<T> extends State<RefreshListView> {
+  List<T> itemData;
+  RefreshCallback onLoadMore;
+  @override
+  void initState() {
+    itemData = widget.itemData;
+    onLoadMore = widget.onLoadMore;
+    super.initState();
+  }
+  setData(newAllData,onLoadMore){
+    setState(() {
+      itemData = newAllData;
+      onLoadMore = onLoadMore;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return new RefreshIndicator(
-      key: this.refreshIndicatorKey,
-      onRefresh: this.onRefresh,
+      key: widget.refreshIndicatorKey,
+      onRefresh: widget.onRefresh,
       child: new ListView.builder(
-        itemCount: itemData.length + headerItemCount + footerItemCount +
-            (itemData.length == 0 ? 0 : _loadMoreCount),
+        itemCount: itemData.length + widget.headerItemCount +  widget.footerItemCount +
+            (itemData.length == 0 ? 0 :  widget._loadMoreCount),
         itemBuilder: (BuildContext context, int index) {
 //            print(getTypeByIndex(index).index);
           var itemType = getTypeByIndex(index);
           var realIndex = getRealIndex(itemType, index);
           if (itemType == ItemType.item) {
-            return itemBuilder(context, realIndex, itemData[realIndex]);
+            return widget.itemBuilder(context, realIndex, itemData[realIndex]);
           } else if (itemType == ItemType.header) {
-            assert(headerBuilder != null);
-            return headerBuilder(context, realIndex);
+            assert(widget.headerBuilder != null);
+            return widget.headerBuilder(context, realIndex);
           } else if (itemType == ItemType.footer) {
-            assert(footerBuilder != null);
-            return footerBuilder(context, realIndex);
+            assert(widget.footerBuilder != null);
+            return widget.footerBuilder(context, realIndex);
           } else if (itemType == ItemType.more) {
-            return new LoadMoreWidget(this.onLoadMore);
+            return new LoadMoreWidget(onLoadMore);
           } else {
             throw new Exception('wow!What a ghost');
           }
         },
-        key: listViewKey,
-        itemExtent: itemExtent,
-        addAutomaticKeepAlives: addAutomaticKeepAlives,
-        addRepaintBoundaries: addRepaintBoundaries,
-        scrollDirection: scrollDirection,
-        reverse: reverse,
-        controller: controller,),
+        key: widget.listViewKey,
+        itemExtent: widget.itemExtent,
+        addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
+        addRepaintBoundaries: widget.addRepaintBoundaries,
+        scrollDirection: widget.scrollDirection,
+        reverse: widget.reverse,
+        controller: widget.controller,),
     );
   }
 
   int getRealIndex(ItemType itemType, int index) {
     if (itemType == ItemType.item) {
-      return index - this.headerItemCount;
+      return index - widget.headerItemCount;
     }
     else if (itemType == ItemType.header) {
       return index;
     }
     else if (itemType == ItemType.footer) {
-      return index - this.headerItemCount - this.itemData.length;
+      return index - widget.headerItemCount - widget.itemData.length;
     } else {
       //loadmore
       return 0;
@@ -102,12 +128,13 @@ class RefreshListView<T> extends StatelessWidget {
 
   ItemType getTypeByIndex(int index) {
 //    print("$index hhhh ${headerItemCount + this.itemData.length}");
-    if (index < headerItemCount) {
+    if (index < widget.headerItemCount) {
       return ItemType.header;
-    } else if (index < (headerItemCount + this.itemData.length)) {
+    } else if (index < (widget.headerItemCount + widget.itemData.length)) {
       return ItemType.item;
-    } else
-    if (index < headerItemCount + this.itemData.length + this.footerItemCount) {
+    } else if (index <
+        widget.headerItemCount + widget.itemData.length +
+            widget.footerItemCount) {
       return ItemType.footer;
     } else {
       return ItemType.more;
