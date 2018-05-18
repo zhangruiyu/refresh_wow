@@ -58,7 +58,7 @@ class LoadMoreWidgetState extends State<LoadMoreWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return new Center(
+    return new Container(margin: const EdgeInsets.only(top: 5.0,bottom: 15.0),child:  new Center(
       child: currentState == _RefreshIndicatorState.refresh
           ?
       new Row(
@@ -91,7 +91,7 @@ class LoadMoreWidgetState extends State<LoadMoreWidget> {
           }) :
       new Text(new RefreshConfig().doneShowText),
 
-    );
+    ),);
   }
 
 }

@@ -17,7 +17,6 @@ For help on editing package code, view the [documentation](https://flutter.io/de
 * itemBuilder: (BuildContext context, int index, String itemData) 构建item
 * headerBuilder: (BuildContext context, int index) 构建头部控件
 * footerBuilder: (BuildContext context, int index) 构建底部控件
-* onRefresh: _handleRefresh, 刷新
 * onLoadMore: !hasMore ? _handleLoadMore : null,) 加载更多,为null时候标示没有更多数据
 
 ####refresh_config()里的

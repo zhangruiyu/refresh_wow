@@ -127,7 +127,7 @@ class _MyHomePageState extends State<MyHomePage> {
           footerBuilder: (BuildContext context, int index) {
             return new Text('footer: $index');
           },
-          onRefresh: _handleRefresh,
+//          onRefresh: _handleRefresh,
           onLoadMore: !hasMore ? _handleLoadMore : null,)
     );
   }

@@ -20,7 +20,6 @@ class RefreshListView<T> extends StatefulWidget {
   final IndexedWithDataWidgetBuilder<T> itemBuilder;
   final IndexedWidgetBuilder headerBuilder;
   final IndexedWidgetBuilder footerBuilder;
-  final RefreshCallback onRefresh;
   final RefreshCallback onLoadMore;
 
   final Axis scrollDirection;
@@ -34,7 +33,6 @@ class RefreshListView<T> extends StatefulWidget {
   final bool addRepaintBoundaries;
   final double itemExtent;
   final Key listViewKey;
-  final Key refreshIndicatorKey;
   final Key refreshListViewKey;
 
   @override
@@ -45,7 +43,6 @@ class RefreshListView<T> extends StatefulWidget {
   RefreshListView({
     this.refreshListViewKey,
     this.listViewKey,
-    this.refreshIndicatorKey,
     //
     this.itemExtent,
     this.addAutomaticKeepAlives: true,
@@ -53,7 +50,7 @@ class RefreshListView<T> extends StatefulWidget {
     this.scrollDirection: Axis.vertical, this.reverse: false, this.controller,
     this.primary, this.physics, this.shrinkWrap, this.padding,
     //
-    @required this.onRefresh, @required this.itemData, @required this.itemBuilder, this.headerItemCount = 0,
+    @required this.itemData, @required this.itemBuilder, this.headerItemCount = 0,
     this.headerBuilder, this.footerItemCount = 0, this.footerBuilder, this.onLoadMore})
       :super(key: refreshListViewKey);
 
@@ -77,38 +74,34 @@ class RefreshListViewState<T> extends State<RefreshListView> {
   }
   @override
   Widget build(BuildContext context) {
-    return new RefreshIndicator(
-      key: widget.refreshIndicatorKey,
-      onRefresh: widget.onRefresh,
-      child: new ListView.builder(
-        itemCount: itemData.length + widget.headerItemCount +  widget.footerItemCount +
-            (itemData.length == 0 ? 0 :  widget._loadMoreCount),
-        itemBuilder: (BuildContext context, int index) {
+    return new ListView.builder(
+      itemCount: itemData.length + widget.headerItemCount +  widget.footerItemCount +
+          (itemData.length == 0 ? 0 :  widget._loadMoreCount),
+      itemBuilder: (BuildContext context, int index) {
 //            print(getTypeByIndex(index).index);
-          var itemType = getTypeByIndex(index);
-          var realIndex = getRealIndex(itemType, index);
-          if (itemType == ItemType.item) {
-            return widget.itemBuilder(context, realIndex, itemData[realIndex]);
-          } else if (itemType == ItemType.header) {
-            assert(widget.headerBuilder != null);
-            return widget.headerBuilder(context, realIndex);
-          } else if (itemType == ItemType.footer) {
-            assert(widget.footerBuilder != null);
-            return widget.footerBuilder(context, realIndex);
-          } else if (itemType == ItemType.more) {
-            return new LoadMoreWidget(onLoadMore);
-          } else {
-            throw new Exception('wow!What a ghost');
-          }
-        },
-        key: widget.listViewKey,
-        itemExtent: widget.itemExtent,
-        addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
-        addRepaintBoundaries: widget.addRepaintBoundaries,
-        scrollDirection: widget.scrollDirection,
-        reverse: widget.reverse,
-        controller: widget.controller,),
-    );
+        var itemType = getTypeByIndex(index);
+        var realIndex = getRealIndex(itemType, index);
+        if (itemType == ItemType.item) {
+          return widget.itemBuilder(context, realIndex, itemData[realIndex]);
+        } else if (itemType == ItemType.header) {
+          assert(widget.headerBuilder != null);
+          return widget.headerBuilder(context, realIndex);
+        } else if (itemType == ItemType.footer) {
+          assert(widget.footerBuilder != null);
+          return widget.footerBuilder(context, realIndex);
+        } else if (itemType == ItemType.more) {
+          return new LoadMoreWidget(onLoadMore);
+        } else {
+          throw new Exception('wow!What a ghost');
+        }
+      },
+      key: widget.listViewKey,
+      itemExtent: widget.itemExtent,
+      addAutomaticKeepAlives: widget.addAutomaticKeepAlives,
+      addRepaintBoundaries: widget.addRepaintBoundaries,
+      scrollDirection: widget.scrollDirection,
+      reverse: widget.reverse,
+      controller: widget.controller,);
   }
 
   int getRealIndex(ItemType itemType, int index) {
