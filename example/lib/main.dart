@@ -51,6 +51,8 @@ Iterable<int> get positiveIntegers sync* {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  GlobalKey<RefreshListViewState> refreshListViewStateKey =
+  new GlobalKey<RefreshListViewState>();
 
   List<String>list = positiveIntegers
       .skip(1) // don't use 0
@@ -62,12 +64,11 @@ class _MyHomePageState extends State<MyHomePage> {
     print('_handleRefresh');
     final Completer<Null> completer = new Completer<Null>();
     new Timer(new Duration(milliseconds: 500), () {
-      setState(() {
         list = positiveIntegers
             .skip(1) // don't use 0
             .take(100) // take 10 numbers
             .toList().map((i) => "我是初始数据$i").toList();
-      });
+      refreshListViewStateKey.currentState.setData(list, hasMore);
 
       completer.complete(null);
     });
@@ -82,14 +83,13 @@ class _MyHomePageState extends State<MyHomePage> {
     new Timer(new Duration(milliseconds: 1300), () {
       //error模拟失败
       if (error != 1) {
-        setState(() {
           error++;
           list.addAll(positiveIntegers
               .skip(1) // don't use 0
               .take(70) // take 10 numbers
               .toList().map((i) => "我是更多数据$i").toList());
           hasMore = list.length > 300;
-        });
+          refreshListViewStateKey.currentState.setData(list, hasMore);
         completer.complete(null);
       } else {
         error++;
@@ -115,6 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
           title: new Text(widget.title),
         ),
         body: new RefreshListView(
+          refreshListViewKey: refreshListViewStateKey,
           itemData: this.list,
           footerItemCount: 2,
           headerItemCount: 2,

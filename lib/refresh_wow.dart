@@ -112,7 +112,7 @@ class RefreshListViewState<T> extends State<RefreshListView> {
       return index;
     }
     else if (itemType == ItemType.footer) {
-      return index - widget.headerItemCount - widget.itemData.length;
+      return index - widget.headerItemCount - itemData.length;
     } else {
       //loadmore
       return 0;
@@ -123,10 +123,10 @@ class RefreshListViewState<T> extends State<RefreshListView> {
 //    print("$index hhhh ${headerItemCount + this.itemData.length}");
     if (index < widget.headerItemCount) {
       return ItemType.header;
-    } else if (index < (widget.headerItemCount + widget.itemData.length)) {
+    } else if (index < (widget.headerItemCount + itemData.length)) {
       return ItemType.item;
     } else if (index <
-        widget.headerItemCount + widget.itemData.length +
+        widget.headerItemCount + itemData.length +
             widget.footerItemCount) {
       return ItemType.footer;
     } else {
