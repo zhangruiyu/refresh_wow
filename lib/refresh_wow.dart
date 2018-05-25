@@ -66,10 +66,10 @@ class RefreshListViewState<T> extends State<RefreshListView> {
     onLoadMore = widget.onLoadMore;
     super.initState();
   }
-  setData(newAllData,onLoadMore){
+  setData(List<T> newAllData,RefreshCallback onLoadMore){
     setState(() {
-      itemData = newAllData;
-      onLoadMore = onLoadMore;
+      this.itemData = newAllData;
+      this.onLoadMore = onLoadMore;
     });
   }
   @override
