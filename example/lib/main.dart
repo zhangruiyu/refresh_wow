@@ -68,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
             .skip(1) // don't use 0
             .take(100) // take 10 numbers
             .toList().map((i) => "我是初始数据$i").toList();
-      refreshListViewStateKey.currentState.setData(list, hasMore);
+      refreshListViewStateKey.currentState.setData(list, !hasMore ? _handleLoadMore : null,);
 
       completer.complete(null);
     });
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
               .take(70) // take 10 numbers
               .toList().map((i) => "我是更多数据$i").toList());
           hasMore = list.length > 300;
-          refreshListViewStateKey.currentState.setData(list, hasMore);
+          refreshListViewStateKey.currentState.setData(list, !hasMore ? _handleLoadMore : null,);
         completer.complete(null);
       } else {
         error++;
